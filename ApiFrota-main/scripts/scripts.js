@@ -1,21 +1,21 @@
 let content = `
   <div class="head">
     <div class="title">
-        <h1>Tabela</h1>
+        <h1>🚗 Tabela</h1>
     </div>
   </div>
   <br>
   <br>
   <div class="contenttable"></div>  
 `
-document.querySelector(".contentGeral").innerHTML = content;
+document.querySelector('.contentGeral').innerHTML = content
 
 async function getApiData() {
   try {
-    const response = await fetch("http://localhost:3001/dados");
-    return response.json();
+    const response = await fetch('http://localhost:3001/dados')
+    return response.json()
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
@@ -37,11 +37,11 @@ function insertContent(data) {
             <th>Rpm</th>
             <th>Speed</th>
             <th>Travel Time</th>
-        </tr>`;
+        </tr>`
 
-  const postContent = `</table>`;
+  const postContent = `</table>`
 
-  let content = "";
+  let content = ''
 
   let cars = data.map((car, i) => {
     const {
@@ -59,8 +59,8 @@ function insertContent(data) {
       odometer,
       rpm,
       speed,
-      TravelTime,
-    } = car;
+      TravelTime
+    } = car
 
     content += ` 
     <tr>
@@ -79,13 +79,11 @@ function insertContent(data) {
         <td>${rpm.value}</td>
         <td>${speed.value}</td>
         <td>${TravelTime.value}</td>
-        </tr>`;
-  });
-  content = preContent + content + postContent;
-  document.querySelector(".contenttable").innerHTML = content;
+        </tr>`
+  })
+  content = preContent + content + postContent
+  document.querySelector('.contenttable').innerHTML = content
 }
 
-const apiResponse = await getApiData();
-insertContent(apiResponse);
-
-
+const apiResponse = await getApiData()
+insertContent(apiResponse)
